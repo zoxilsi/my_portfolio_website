@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: 124, 58, 237;
+  --accent-foreground: 255, 255, 255;
+}
+
+.dark {
+  --background: 0, 0, 0;
+  --foreground: 255, 255, 255;
+  --card: 15, 15, 15;
+  --card-foreground: 255, 255, 255;
+  --popover: 15, 15, 15;
+  --popover-foreground: 255, 255, 255;
+  --primary: 255, 255, 255;
+  --primary-foreground: 0, 0, 0;
+  --secondary: 30, 30, 30;
+  --secondary-foreground: 255, 255, 255;
+  --muted: 30, 30, 30;
+  --muted-foreground: 161, 161, 170;
+  --accent: 124, 58, 237;
+  --accent-foreground: 255, 255, 255;
+  --destructive: 239, 68, 68;
+  --destructive-foreground: 255, 255, 255;
+  --border: 30, 30, 30;
+  --input: 30, 30, 30;
+  --ring: 124, 58, 237;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Only apply custom cursor on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
+
+.animate-gradient {
+  background-size: 400%;
+  -webkit-animation: gradient 8s ease infinite;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.8);
+  }
+}
+
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 animate-gradient;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  will-change: transform;
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+  will-change: transform;
+}
+
+.hoverable:hover ~ .cursor-dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgb(124, 58, 237);
+}
+
+.hoverable:hover ~ .cursor-outline {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+/* Add floating animation for icons */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Add pulse glow effect */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(124, 58, 237, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.6));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Enhance icon hover effects */
+.skill-icon,
+.social-icon {
+  transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+}
+
+.skill-card:hover .skill-icon,
+.social-link:hover .social-icon {
+  transform: scale(1.2);
+  color: rgb(124, 58, 237);
+  filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.5));
+}
+
+.skill-icon {
+  @apply text-4xl transition-all duration-300 ease-in-out;
+}
+
+.skill-card:hover .skill-icon {
+  @apply scale-125 text-purple-500;
+}
+
+.social-icon {
+  @apply text-2xl transition-all duration-300 ease-in-out;
+}
+
+.social-link:hover .social-icon {
+  @apply scale-125 text-purple-500;
+}
+
+.blend-profile {
+  mix-blend-mode: luminosity;
+  transition: mix-blend-mode 0.5s ease;
+}
+
+.blend-profile:hover {
+  mix-blend-mode: normal;
+}
+
+.section-heading {
+  @apply text-3xl md:text-4xl font-bold mb-8 relative inline-block;
+}
+
+.section-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, rgb(124, 58, 237), transparent);
+}
+
+.education-card {
+  @apply relative overflow-hidden rounded-lg p-6 border border-gray-800 bg-gray-900 transition-all duration-500 hover:border-purple-500;
+}
+
+.education-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.education-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* Updated profile border classes without rotation */
+.profile-border-container {
+  position: relative;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(90deg, #7c3aed, #ec4899, #ef4444, #7c3aed);
+  background-size: 300% 100%;
+  animation: border-flow 4s ease infinite, pulse-glow 3s ease-in-out infinite;
+}
+
+.profile-border-inner {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  z-index: 2;
+}
+
+/* Add radial gradient utility */
+.bg-radial-gradient {
+  background-image: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+
+/* Add content-visibility for better performance */
+.cv-auto {
+  content-visibility: auto;
+}
+
+/* Gradient stops for project cards */
+.stop-yellow-500 {
+  stop-color: #eab308;
+}
+.stop-orange-500 {
+  stop-color: #f97316;
+}
+.stop-blue-500 {
+  stop-color: #3b82f6;
+}
+.stop-cyan-500 {
+  stop-color: #06b6d4;
+}
+.stop-purple-500 {
+  stop-color: #a855f7;
+}
+.stop-pink-500 {
+  stop-color: #ec4899;
+}
+
+/* Add shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
