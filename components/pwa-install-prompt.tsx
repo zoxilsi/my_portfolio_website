@@ -65,7 +65,7 @@ export default function PWAInstallPrompt() {
         </button>
       </div>
       <p className="text-gray-300 text-sm mb-3">
-        Install this app on your device for quick access to my portfolio, even when offline.
+        Discover my world anytime—no Wi-Fi required.
       </p>
       <div className="flex space-x-2">
         <Button
